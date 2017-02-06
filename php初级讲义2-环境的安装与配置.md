@@ -1,0 +1,1 @@
+os x 下的环境配置可以参考[Mac OS X El Capitan 配置PHP环境](http://www.jianshu.com/p/94933ae68133)。
