@@ -1,6 +1,7 @@
 #### php脚本的特点
 * `php`脚本是以文件形式存在的，文件的后缀通常为`.php`，这主要取决服务器的配置。
-* `php`脚本以标记`<?php`开始，以标记`?>`结束。
+* `php`脚本以标记`<?php`开始，以标记`?>`结束，标记间的代码会被服务器解释执行。
+* `php`支持`c`(/**/), `c++`(//)和`perl`(#)风格的注释，注释用于对代码进行简短说明以方便团队合作和后续的维护开发，注释的内容在脚本执行过程中会被忽略。
 
 #### 实例
 * 在`web`服务根目录下新建文件`test-3.php`。
@@ -11,10 +12,13 @@
      * 第一个php脚本
      * @author stone
      */
+
+    # 输出'hello, world!'
     echo 'hello, world!'; // 输出'hello, world!'
 ?>
 ```
 * 在浏览器中输入[http://localhost/test-3.php](http://localhost/test-3.php)进行访问，如下：
+
 ![test-3-1.png](http://upload-images.jianshu.io/upload_images/2050891-78e27e4341886954.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 #### 说明
