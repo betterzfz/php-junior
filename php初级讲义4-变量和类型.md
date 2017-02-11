@@ -38,7 +38,7 @@ echo $hello;  // 输出'world
 * `<br/>`是`html`的一个标签，用于在网页上进行换行。
 
 #### 类型
-* 在`php`中数据总共有8中原始类型，分别为布尔型(boolean)，整形(integer)，浮点型(float)，字符串(string)，数组(array)，对象(object)，资源(resource)和无类型(NULL)。其中布尔型，整形，浮点型和字符串为四个标量类型，数组和对象是两个复合类型，资源和无类型是两个特殊类型。
+* 在`php`中数据总共有8中原始类型，分别为布尔型(`boolean`)，整形(`integer`)，浮点型(`float`)，字符串(`string`)，数组(`array`)，对象(`object`)，资源(`resource`)和无类型(`NULL`)。其中布尔型，整形，浮点型和字符串为四个标量类型，数组和对象是两个复合类型，资源和无类型是两个特殊类型。
 * 布尔型数据只有两个，`TRUE`和`FALSE`，不区分大小写，非真即假，常用做逻辑判断。布尔数据的实例：
 ```php
 $data = TRUE;
@@ -50,8 +50,80 @@ echo $data.'<br/>'; // 输出1
 $data = FALSE;
 echo $data.'<br/>'; // 输出''
 echo print_r($data).'<br/>'; // 输出1
+echo print_r($data, true).'<br/>'; // 输出''
 echo var_dump($data); // bool(false)
 echo '<pre>';
 echo print_r($data); // 输出1
 echo '</pre>';
+echo '<pre>';
+echo print_r($data, true); // 输出''
+echo '</pre>';
+echo '<pre>';
+echo var_dump($data); // 输出bool(false)
+echo '</pre>';
+```
+* 整型包含了所有整数，整型数据可以用十进制，二进制(前置0b)，八进制(前置0)和十六进制(前置0x)表示，每种表示都可以有正负之分。整型数据的实例：
+```php
+$count = 10;
+echo $count.'<br/>'; // 输出10
+$count = -10;
+echo $count.'<br/>'; // 输出-10
+$count = 0b10;
+echo $count.'<br/>'; // 输出2
+$count = -0b10;
+echo $count.'<br/>'; // 输出-2
+$count = 010;
+echo $count.'<br/>'; // 输出8
+$count = -010;
+echo $count.'<br/>'; // 输出-8
+$count = 0x10;
+echo $count.'<br/>'; // 输出16
+$count = -0x10;
+echo $count.'<br/>'; // 输出-16
+$count = 0X10;
+echo $count.'<br/>'; // 输出16
+$count = -0X10;
+echo $count.'<br/>'; // 输出-16
+echo PHP_INT_MAX.'<br/>'; // 输出9223372036854775807，PHP_INT_MAX是预定义常量，表示整型数最大值
+echo (PHP_INT_MAX + 1).'<br/>'; // 输出9.2233720368548E+18
+```
+* 浮点型就是浮点数，也被称作双精度数(`double`)或实数(`real`)，就是带有小数点的数字，有的浮点数在计算机中是没有办法精确表示的。浮点型数据的实例：
+```php
+$number = 3.14;
+echo $number.'<br/>'; // 输出3.14
+$number = 3.14e2; // 科学计数法
+echo $number.'<br/>'; // 输出314
+$number = 3.14e-2; // 科学计数法
+echo $number.'<br/>'; // 输出0.0314
+$number = 3.14E2; // 科学计数法
+echo $number.'<br/>'; // 输出314
+$number = 3.14E-2; // 科学计数法
+echo $number.'<br/>'; // 输出0.0314
+$number = 0.5;
+echo $number.'<br/>'; // 输出0.5
+echo var_dump($number).'<br/>'; // 输出float(0.5)
+echo print_r($number).'<br/>'; // 输出0.51
+echo print_r($number, true).'<br/>'; // 输出0.5
+echo '<pre>';
+echo var_dump($number); // 输出float(0.5)
+echo '</pre>';
+echo '<pre>';
+echo print_r($number); // 输出0.51
+echo '</pre>';
+echo '<pre>';
+echo print_r($number, true); // 输出0.5
+echo '</pre>';
+/*5 101
+5 ／ 2 1
+2 ／ 2 0
+1 ／ 2 1
+0
+0.7 0.101100110011001100
+0.7 * 2 1
+0.4 * 2 0
+0.8 * 2 1
+0.6 * 2 1
+0.2 * 2 0
+0.4*/
+echo floor((0.1 + 0.7) * 10); // 输出7
 ```
