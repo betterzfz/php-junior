@@ -113,7 +113,8 @@ echo '</pre>';
 echo '<pre>';
 echo print_r($number, true); // 输出0.5
 echo '</pre>';
-/*5 101
+/*
+5 101
 5 ／ 2 1
 2 ／ 2 0
 1 ／ 2 1
@@ -124,6 +125,64 @@ echo '</pre>';
 0.8 * 2 1
 0.6 * 2 1
 0.2 * 2 0
-0.4*/
+0.4
+通过二进制转换可以理解下面的输出
+*/
 echo floor((0.1 + 0.7) * 10); // 输出7
+```
+* 字符串由一系列字符组成，起始和结束位置分别有一个定界符，可能是`'`, `"`, `heredoc语法结构`或`nowdoc语法结构`。字符串数据实例：
+```php
+$title = 'this is a title';
+echo $title.'<br/>'; // 输出'this is a title'
+$title = 'this is a title named "hello, world!"';
+echo $title.'<br/>'; // 输出'this is a title named "hello, world!"'
+// $title = 'this is a title named 'hello, world!''; // localhost 网页无法正常运作
+$title = 'this is a title named \'hello, world!\'';
+echo $title.'<br/>'; // 输出"this is a title named 'hello, world!'"
+$title = 'this is a title named \hello, world!';
+echo $title.'<br/>'; // 输出'this is a title named \hello, world!'
+$title = 'this is a title named \ hello, world!';
+echo $title.'<br/>'; // 输出'this is a title named \ hello, world!'
+$title = 'this is a title named \\ hello, world!';
+echo $title.'<br/>'; // 输出'this is a title named \ hello, world!'
+$title = "this is a title";
+echo $title.'<br/>'; // 输出'this is a title'
+// $title = "this is a title named "hello, world!""; // localhost 网页无法正常运作
+$title = "this is a title named 'hello, world!'";
+echo $title.'<br/>'; // 输出"this is a title named 'hello, world!'"
+$title = "this is a title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is a title named "hello, world!"'
+$title = "this is a title \named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is a title amed "hello, world!"', 在mac os x下的结果，其它平台可能不同
+$title = "this is a \title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is a itle named "hello, world!"', 在mac os x下的结果，其它平台可能不同
+$title = "this is a \r title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is a title named "hello, world!"', 在mac os x下的结果，其它平台可能不同
+$title = "this is a \v title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is a  title named "hello, world!"', 在mac os x下的结果，其它平台可能不同
+$title = "this is \a title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is \a title named "hello, world!"'
+$title = "this is \\a title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is \a title named "hello, world!"'
+$title = "this is \ a title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is \ a title named "hello, world!"'
+$title = "this is \\ a title named \"hello, world!\"";
+echo $title.'<br/>'; // 输出'this is \ a title named "hello, world!"'
+$title = 'this is a title \named "hello, world!"';
+echo $title.'<br/>'; // 输出'this is a title \named "hello, world!"'
+$title = 'this is a \title named "hello, world!"';
+echo $title.'<br/>'; // 输出'this is a \title named "hello, world!"'
+$title = 'this is a \r title named "hello, world!"';
+echo $title.'<br/>'; // 输出'this is a \r title named "hello, world!"'
+$title = 'this is a \v title named "hello, world!"';
+echo $title.'<br/>'; // 输出'this is a \v title named "hello, world!"'
+$title = 'this is a title named \"hello, world!\"';
+echo $title.'<br/>'; // 输出'this is a title named \"hello, world!\"'
+$title = "this is a title named \'hello, world!\'";
+echo $title.'<br/>'; // 输出'this is a title named \'hello, world!\''
+// 在双引号包围的字符串中，php会对变量和一些特殊字符(\n,\r,\t,\v,\\,\$等)进行解析
+$hello = 'hello, world!';
+echo $hello.'<br/>'; // 输出'hello, world!'
+echo 'this is a title named $hello'.'<br/>'; // 输出'this is a title named $hello'
+echo "this is a title named $hello".'<br/>'; // 输出'this is a title named hello, world!'
 ```
