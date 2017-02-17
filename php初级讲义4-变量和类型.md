@@ -145,7 +145,6 @@ $title = 'this is a title named \ hello, world!';
 echo $title.'<br/>'; // 输出'this is a title named \ hello, world!'
 $title = 'this is a title named \\ hello, world!';
 echo $title.'<br/>'; // 输出'this is a title named \ hello, world!'
-
 $title = "this is a title";
 echo $title.'<br/>'; // 输出'this is a title'
 // $title = "this is a title named "hello, world!""; // localhost 网页无法正常运作
@@ -169,7 +168,6 @@ $title = "this is \ a title named \"hello, world!\"";
 echo $title.'<br/>'; // 输出'this is \ a title named "hello, world!"'
 $title = "this is \\ a title named \"hello, world!\"";
 echo $title.'<br/>'; // 输出'this is \ a title named "hello, world!"'
-
 $title = 'this is a title \named "hello, world!"';
 echo $title.'<br/>'; // 输出'this is a title \named "hello, world!"'
 $title = 'this is a \title named "hello, world!"';
@@ -180,10 +178,8 @@ $title = 'this is a \v title named "hello, world!"';
 echo $title.'<br/>'; // 输出'this is a \v title named "hello, world!"'
 $title = 'this is a title named \"hello, world!\"';
 echo $title.'<br/>'; // 输出'this is a title named \"hello, world!\"'
-
 $title = "this is a title named \'hello, world!\'";
 echo $title.'<br/>'; // 输出'this is a title named \'hello, world!\''
-
 // 在双引号包围的字符串中，php会对变量和一些特殊字符(\n,\r,\t,\v,\\,\$等)进行解析
 $hello = 'hello, world!';
 echo $hello.'<br/>'; // 输出'hello, world!'
@@ -191,159 +187,157 @@ echo 'this is a title named $hello'.'<br/>'; // 输出'this is a title named $he
 echo "this is a title named $hello".'<br/>'; // 输出'this is a title named hello, world!'
 echo 'this is a title named \$hello'.'<br/>'; // 输出'this is a title named \$hello'
 echo "this is a title named \$hello".'<br/>'; // 输出'this is a title named $hello'
-
-    /*
-    heredoc结构以<<<作为运算符，后面接上标识符，标识符的命名规范同变量名一样，换行后接字符串值，最后另起一行放置<<<后定义的标识符作结尾，这一行除了标识符和可能存在的分号外不能包含任何其它字符。
-    heredoc结构和双引号一样都可以对变量和特殊字符进行解析。
-    */
-    $title = <<<TITLE
-        this is a title
+/**
+ * heredoc结构以<<<作为运算符，后面接上标识符，标识符的命名规范同变量名一样，换行后接字符串值，最后另起一行放置<<<后定义的标识符作结尾，这一行除了标识符和可能存在的分号外不能包含任何其它字符。
+ * heredoc结构和双引号一样都可以对变量和特殊字符进行解析。
+ */
+$title = <<<TITLE
+    this is a title
 TITLE;
-    echo $title.'<br/>'; // 输出'this is a title'
-    /*$title = <<<TITLE
-        this is a title
+echo $title.'<br/>'; // 输出'this is a title'
+/*$title = <<<TITLE
+    this is a title
 TITLE;  */ // 网页无法正常运作
-    $title = <<<TITLE
-        this is a title
+$title = <<<TITLE
+    this is a title
 
 TITLE;
-    echo $title.'<br/>'; // 输出'this is a title '
-    /*$title = <<<TITLE
-        this is a title
+echo $title.'<br/>'; // 输出'this is a title '
+/*$title = <<<TITLE
+    this is a title
 TITLE; */ // 网页无法正常运作
-    /*$title = <<<TITLE
-        this is a title
-    TITLE; // 网页无法正常运作
-    */
-    /*$title = <<<TITLE
-        this is a title
- TITLE; // 网页无法正常运作
-    */
-    $title = <<<TITLE
-        "this is a title"
+/*$title = <<<TITLE
+    this is a title
+TITLE; // 网页无法正常运作
+*/
+/*$title = <<<TITLE
+    this is a title
+TITLE; // 网页无法正常运作
+*/
+$title = <<<TITLE
+    "this is a title"
 TITLE;
-    echo $title.'<br/>'; // 输出'"this is a title"'
-    $title = <<<TITLE
-        'this is a title'
+echo $title.'<br/>'; // 输出'"this is a title"'
+$title = <<<TITLE
+    'this is a title'
 TITLE;
-    echo $title.'<br/>'; // 输出"'this is a title'"
-    $title = <<<title
-        \'this is a title\'
+echo $title.'<br/>'; // 输出"'this is a title'"
+$title = <<<title
+    \'this is a title\'
 title;
-    echo $title.'<br/>'; // 输出"\'this is a title\'"
-    $title = <<<title
-        \"this is a title\"
+echo $title.'<br/>'; // 输出"\'this is a title\'"
+$title = <<<title
+    \"this is a title\"
 title;
-    echo $title.'<br/>'; // 输出'\"this is a title\"'
-    /*$title = <<<title
-        this is a title
+echo $title.'<br/>'; // 输出'\"this is a title\"'
+/*$title = <<<title
+    this is a title
 TITLE;*/ // 网页无法正常运作
-    $title = <<<title
-        this is a title \named "hello, world!"
+$title = <<<title
+    this is a title \named "hello, world!"
 title;
-    echo $title.'<br/>'; // 输出'this is a title amed "hello, world!"', 在mac os x下的结果，其它平台可能不同
-    $title = <<<title
-        this is a \title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is a title amed "hello, world!"', 在mac os x下的结果，其它平台可能不同
+$title = <<<title
+    this is a \title named \"hello, world!\"
 title;
-    echo $title.'<br/>'; // 输出'this is a itle named \"hello, world!\"', 在mac os x下的结果，其它平台可能不同
-    $title = <<<title
-        this is a \r title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is a itle named \"hello, world!\"', 在mac os x下的结果，其它平台可能不同
+$title = <<<title
+    this is a \r title named \"hello, world!\"
 title;
-    echo $title.'<br/>'; // 输出'this is a title named \"hello, world!\"', 在mac os x下的结果，其它平台可能不同
-    $title = <<<title
-        this is a \v title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is a title named \"hello, world!\"', 在mac os x下的结果，其它平台可能不同
+$title = <<<title
+    this is a \v title named \"hello, world!\"
 title;
-    echo $title.'<br/>'; // 输出'this is a  title named \"hello, world!\"', 在mac os x下的结果，其它平台可能不同
-    $title = <<<title
-        this is \a title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is a  title named \"hello, world!\"', 在mac os x下的结果，其它平台可能不同
+$title = <<<title
+    this is \a title named \"hello, world!\"
 title;
-    echo $title.'<br/>'; // 输出'this is \a title named \"hello, world!\"'
-    $title = <<<title
-        this is \\a title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is \a title named \"hello, world!\"'
+$title = <<<title
+    this is \\a title named \"hello, world!\"
 title;
-    echo $title.'<br/>'; // 输出'this is \a title named \"hello, world!\"'
-    $title = <<<title
-        this is \ a title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is \a title named \"hello, world!\"'
+$title = <<<title
+    this is \ a title named \"hello, world!\"
 title;
-    echo $title.'<br/>'; // 输出'this is \ a title named \"hello, world!\"'
-    $title = <<<title
-        this is \\ a title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is \ a title named \"hello, world!\"'
+$title = <<<title
+    this is \\ a title named \"hello, world!\"
 title;
-    echo $title.'<br/>'; // 输出'this is \ a title named \"hello, world!\"'
-    $title = <<<title
-        this is a title named \'hello, world!\'
+echo $title.'<br/>'; // 输出'this is \ a title named \"hello, world!\"'
+$title = <<<title
+    this is a title named \'hello, world!\'
 title;
-    echo $title.'<br/>'; // 输出"this is a title named \'hello, world!\'"
-    $title = <<<title
-        this is a title named $hello
+echo $title.'<br/>'; // 输出"this is a title named \'hello, world!\'"
+$title = <<<title
+    this is a title named $hello
 title;
-    echo $title.'<br/>'; // 输出"this is a title named hello, world!"
-    $title = <<<title
-        this is a title named \$hello
+echo $title.'<br/>'; // 输出"this is a title named hello, world!"
+$title = <<<title
+    this is a title named \$hello
 title;
-    echo $title.'<br/>'; // 输出"this is a title named $hello"
-    $title = <<<"title"
-        this is a title named \$hello
+echo $title.'<br/>'; // 输出"this is a title named $hello"
+$title = <<<"title"
+    this is a title named \$hello
 title;
-    echo $title.'<br/>'; // 输出"this is a title named $hello"
-    $title = <<<'title'
-        this is a title named \$hello
+echo $title.'<br/>'; // 输出"this is a title named $hello"
+$title = <<<'title'
+    this is a title named \$hello
 title;
-    echo $title.'<br/>'; // 输出"this is a title named \$hello"
-    $title = <<<'title'
-        this is a title named $hello
+echo $title.'<br/>'; // 输出"this is a title named \$hello"
+$title = <<<'title'
+    this is a title named $hello
 title;
-    echo $title.'<br/>'; // 输出"this is a title named $hello"
-    $title = <<<'title'
-        this is \a \\ \ \title \named $hello
+echo $title.'<br/>'; // 输出"this is a title named $hello"
+$title = <<<'title'
+    this is \a \\ \ \title \named $hello
 title;
-    echo $title.'<br/>'; // 输出"this is \a \\ \ \title \named $hello"
-
-    // nowdoc语法结构和heredoc类似，区别是不会对特殊字符进行解析，开始处的标识符用单引号引起来。
-    $doc = <<<'DOC'
-    this is a title,
-    this is a paragraph.
+echo $title.'<br/>'; // 输出"this is \a \\ \ \title \named $hello"
+// nowdoc语法结构和heredoc类似，区别是不会对特殊字符进行解析，开始处的标识符用单引号引起来。
+$doc = <<<'DOC'
+this is a title,
+this is a paragraph.
 DOC;
-    echo $doc.'<br/>'; // 输出'this is a title, this is a paragraph'
-    $doc = <<<'DOC'
-    this is a title,
-    this is a paragraph
+echo $doc.'<br/>'; // 输出'this is a title, this is a paragraph'
+$doc = <<<'DOC'
+this is a title,
+this is a paragraph
 DOC;
-    echo $doc.'<br/>';
-    $title = <<<'DOC'
-        this is a title
+echo $doc.'<br/>';
+$title = <<<'DOC'
+    this is a title
 DOC;
-    echo $title.'<br/>'; // 输出'this is a title'
-    $title = <<<'DOC'
-        this is a title named "hello, world!"
+echo $title.'<br/>'; // 输出'this is a title'
+$title = <<<'DOC'
+    this is a title named "hello, world!"
 DOC;
-    echo $title.'<br/>'; // 输出'this is a title named "hello, world!"'
-    $title = <<<'DOC'
-        this is a title named 'hello, world!'
+echo $title.'<br/>'; // 输出'this is a title named "hello, world!"'
+$title = <<<'DOC'
+    this is a title named 'hello, world!'
 DOC;
-    echo $title.'<br/>'; // 输出"this is a title named 'hello, world!'"
-    $title = <<<'DOC'
-        this is a title named \'hello, world!\'
+echo $title.'<br/>'; // 输出"this is a title named 'hello, world!'"
+$title = <<<'DOC'
+    this is a title named \'hello, world!\'
 DOC;
-    echo $title.'<br/>'; // 输出"this is a title named \'hello, world!\'"
-    $title = <<<'DOC'
-        this is a \r \v \title \named \\  \ \hello, world!
+echo $title.'<br/>'; // 输出"this is a title named \'hello, world!\'"
+$title = <<<'DOC'
+    this is a \r \v \title \named \\  \ \hello, world!
 DOC;
-    echo $title.'<br/>'; // 输出'this is a \r \v \title \named \\ \ \hello, world!'
-    $title = <<<'DOC'
-        this is a title named \"hello, world!\"
+echo $title.'<br/>'; // 输出'this is a \r \v \title \named \\ \ \hello, world!'
+$title = <<<'DOC'
+    this is a title named \"hello, world!\"
 DOC;
-    echo $title.'<br/>'; // 输出'this is a title named \"hello, world!\"'
-    $hello = 'hello, world!';
-    $title = <<<'DOC'
-        this is a title named $hello
+echo $title.'<br/>'; // 输出'this is a title named \"hello, world!\"'
+$hello = 'hello, world!';
+$title = <<<'DOC'
+    this is a title named $hello
 DOC;
-    echo $title.'<br/>'; // 输出'this is a title named $hello'
-    $title = <<<'DOC'
-        this is a title named \$hello
+echo $title.'<br/>'; // 输出'this is a title named $hello'
+$title = <<<'DOC'
+    this is a title named \$hello
 DOC;
-    echo $title.'<br/>'; // 输出'this is a title named \$hello'
-    /*$title = <<<'DOC'
-        this is a title named \$hello
+echo $title.'<br/>'; // 输出'this is a title named \$hello'
+/*$title = <<<'DOC'
+    this is a title named \$hello
 doc;*/ // 网页无法正常运作
 ```
