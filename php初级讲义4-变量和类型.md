@@ -62,6 +62,8 @@ echo '<pre>';
 echo var_dump($data); // 输出bool(false)
 echo '</pre>';
 ```
+* 在`php`中，`print_r()`和`var_dump()`都是可以用来打印变量的函数，区别是`var_dump()`可以同时打印多个变量，并且可以输出变量的类型，同时`print_r()`的返回值为布尔值，表示打印是否成功，而`var_dump()`的返回值就是打印输出的变量本身。
+
 * 整型包含了所有整数，整型数据可以用十进制，二进制(前置0b)，八进制(前置0)和十六进制(前置0x)表示，每种表示都可以有正负之分。整型数据的实例：
 ```php
 $count = 10;
@@ -131,6 +133,7 @@ echo '</pre>';
 echo floor((0.1 + 0.7) * 10); // 输出7
 ```
 * 字符串由一系列字符组成，起始和结束位置分别有一个定界符，可能是`'`, `"`, `heredoc语法结构`或`nowdoc语法结构`。字符串数据实例：
+
 ```php
 $title = 'this is a title';
 echo $title.'<br/>'; // 输出'this is a title'
