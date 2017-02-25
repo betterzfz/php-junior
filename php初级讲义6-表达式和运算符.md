@@ -217,6 +217,7 @@ string(472) "total 112
 "
 */
 ```
+* 执行运算符在打开了安全模式或者禁用了`shell_exec()`函数时是无效的。
 
 #### 递增／递减运算符
 在`php`中递增（操作数加1）运算符为`++`，分为前递增和后递增，递减（操作数减1）运算符为`--`，分为前递减和后递减。前递增和前递减会先对操作数进行递增或递减，然后再参加其它运算，后递增和后递减会先让操作数参加其它运算，然后再对操作数进行递增或递减。
@@ -291,20 +292,72 @@ echo '<br/>';
 #### 字符串运算符
 在`php`中有两个字符串运算符，分别为`.`和`.=`。
 ```php
+$hello = 'hello, world!';
+$title = 'this is a title:';
+echo $hello;
+echo '<br/>';
+echo $title;
+echo '<br/>';
+echo $title.$hello;
+echo '<br/>';
+$title = $title.$hello;
+echo $title;
+echo '<br/>';
+$title .= $hello;
+echo $title;
+echo '<br/>';
 ```
 
 #### 数组运算符
+数组运算符用于对数组进行操作。
 ```php
-// + 联合 两个数组操作数的联合 把右边的数组元素附加到左边的数组后面，相同保留左边的忽略右边的。
-// == 相等 两个数组操作数具有相同的键／值对
-// === 全等 两个数组操作数具有相同的键／值对并且顺序和类型都相同
-// != 不等 两个数组操作数不相等
-// <> 不等 两个数组操作数不相等
-// !== 不等 两个数组操作数不全等
+$x = ['andy' => '刘德华', 'jack' => '张学友'];
+$y = ['jack' => 'jackson', 'joe' => 'joe woo'];
+$z = $x + $y; // + 联合 两个数组操作数的联合 把右边的数组元素附加到左边的数组后面，相同保留左边的忽略右边的。
+echo '<pre>';
+print_r($z);
+echo '</pre>';
+/*
+Array
+(
+	[andy] => 刘德华
+	[jack] => 张学友
+	[joe] => joe woo
+)
+*/
+$z = $y + $x;
+echo '<pre>';
+print_r($z);
+echo '</pre>';
+/*
+Array
+(
+	[jack] => jackson
+	[joe] => joe woo
+	[andy] => 刘德华
+)
+*/
+var_dump($x == $y); // bool(false) == 相等 两个数组操作数具有相同的键／值对
+echo '<br/>';
+$a = ['joe' => 'joe woo', 'andy' => '刘德华', 'jack' => 'jackson'];
+var_dump($z == $a); // bool(true) 
+echo '<br/>';
+var_dump($z === $a); // bool(false) === 全等 两个数组操作数具有相同的键／值对并且顺序和类型都相同
+echo '<br/>';
+$b = ['jack' => 'jackson', 'joe' => 'joe woo', 'andy' => '刘德华'];
+var_dump($z === $b); // bool(true) 
+echo '<br/>';
+var_dump($z != $a); // bool(false) != 不等 两个数组操作数不相等
+echo '<br/>';
+var_dump($z <> $b); // bool(false) <> 不等 两个数组操作数不相等
+echo '<br/>';
+var_dump($z !== $b); // bool(false) !== 不等 两个数组操作数不全等
+echo '<br/>';
 ```
 
 #### 运算符优先级
 运算符优先级决定了运算的顺序。
+
 | 运算符 | 结合方向 |
 | ------ | ------ |
 | ** | 右 |
@@ -314,17 +367,75 @@ echo '<br/>';
 | + - . | 左 |
 | << >> | 左 |
 | < <= > >= | 无 |
-| == != === !== <> <=> | 无 |
+| == != === !== <> <=>(php7) | 无 |
 | & | 左 |
 | ^ | 左 |
-| | | 左 |
+| ｜ | 左 |
 | && | 左 |
-| || | 左 |
+| ‖ | 左 |
 | ? : | 左 |
-| = += -= *= **= /= .= %= &= \|= ^= <<= >>= | 右 |
+| = += -= *= **= /= .= %= &= ｜= ^= <<= >>= | 右 |
 | and | 左 |
 | xor | 左 |
 | or | 左 |
+```php
+$x = 2;
+$y = 2;
+var_dump(~$x ** $y); // int(-5)  
+echo '<br/>';
+var_dump(!$x--); // bool(false) 
+echo '<br/>';
+var_dump(!$x * $y); // int(0)
+echo '<br/>';
+var_dump(!($x * $y)); // bool(false) 
+echo '<br/>';
+echo 1 + $x * $y; // 3 
+echo '<br/>';
+echo 2 * $x ** $y; // 2 
+echo '<br/>';
+echo $x << 1 + $y; // 8 
+echo '<br/>';
+var_dump($x < 1 << $y); // 1 
+echo '<br/>';
+var_dump($x & 1 == $y); // int(0) 
+echo '<br/>';
+var_dump($y ^ $x & 1); // int(3) 
+echo '<br/>';
+var_dump($y | $x ^ 2); // int(3)   
+echo '<br/>';
+var_dump($y && $x | 2); // bool(true)    
+echo '<br/>';
+var_dump($y || $x && 0); // bool(true)     
+echo '<br/>';
+var_dump($x ? $y : 0 && 1); // int(2)      
+echo '<br/>';
+var_dump($x = 3 ? $y : 0); // int(2)      
+echo '<br/>';
+echo $x; // 2
+echo '<br/>';
+var_dump($x and $y = 0); // bool(false)
+echo '<br/>';
+var_dump($x xor $y and 0); // bool(true)
+echo '<br/>';
+var_dump(1 or 1 xor 1); // bool(true)
+echo '<br/>';
+```
 
 #### 运算符的说明
 * 运算符可以按照其能接受几个值进行分组，可分为一元运算符，二元运算符和三元运算符。
+```php
+$x = 3;
+echo $x++; // 3
+echo '<br/>';
+echo $x; // 4
+echo '<br/>';
+// ++ -- ! ~ @等操作数只有一个操作数的运算符是一元运算符
+echo $x ? : 9; // 4
+echo '<br/>';
+// ?:是唯一的可以有三个操作数的运算符，称为三元运算符
+$y = 7;
+$z = $x + $y;
+echo $z; // 11
+echo '<br/>';
+// 可以有两个操作数的运算符称为二元运算符，除了一元运算符和三元运算符之外目前我们遇到过的都是二元运算符
+```
