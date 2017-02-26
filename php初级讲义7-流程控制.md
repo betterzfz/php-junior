@@ -80,6 +80,7 @@ echo '<br/>';
 * `if`条件中的表达式取得的值为布尔值，程序会根据该值有选择地执行代码。
 * `if`条件控制结构中如果某个执行段的语句数大于1则需要用`{`和`}`进行围绕。
 * `if`条件控制结构可以进行嵌套。
+
 ```php
 $x = 5;
 $y = 7;
@@ -132,6 +133,7 @@ endif;
 echo '<br/>';
 ```
 * `if...else...`中的`else`结构定义了条件不成立时所要执行的代码片段。
+
 ```php
 $x = 5;
 $y = 7;
@@ -254,3 +256,395 @@ endif;
 ```
 * `else if`和`elseif`可以用于多重条件控制，当该结构前面的`if`或`else if`（`elseif`)都为假且当前的结构中的表达式为真时则执行这一控制结构中的代码。
 * `else if`和`elseif`的功能在用花括号包围结构代码时没有区别的，但当冒号定义的添加中只能用`elseif`，否则会产生解析错误。
+
+```php
+$x = 5;
+switch($x){
+	case 0:
+		echo '$x is equal to 0';
+		break;
+	case 1:
+		echo '$x is equal to 1';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		break;
+	case 3:
+		echo '$x is equal to 3';
+		break;
+	case 4:
+		echo '$x is equal to 4';
+		break;
+	case 5:
+		echo '$x is equal to 5';
+		break;
+}
+// $x is equal to 5
+echo '<br/>';
+$x++;
+switch($x){
+	case 0:
+		echo '$x is equal to 0';
+		break;
+	case 1:
+		echo '$x is equal to 1';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		break;
+	case 3:
+		echo '$x is equal to 3';
+		break;
+	case 4:
+		echo '$x is equal to 4';
+		break;
+	case 5:
+		echo '$x is equal to 5';
+		break;
+	default:
+		echo '$x is bigger than 5';
+		break;
+}
+// $x is bigger than 5
+echo '<br/>';
+switch ($x) {
+	case 0:
+		echo '$x is equal to 0';
+		break;
+	case 1:
+		echo '$x is equal to 1';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		break;
+	case 3:
+		echo '$x is equal to 3';
+		break;
+	case 4:
+		echo '$x is equal to 4';
+		break;
+	case 5:
+		echo '$x is equal to 5';
+		break;
+	default:
+		echo '$x is bigger than 5';
+		break;
+}
+// $x is bigger than 5
+echo '<br/>';
+switch ($x) {
+	case 0:
+		echo '$x is equal to 0';
+		echo '<br/>';
+		break;
+	case 1:
+		echo '$x is equal to 1';
+		echo '<br/>';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+		break;
+	case 3:
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4:
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5:
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+	default:
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+}
+// $x is bigger than 5
+switch($x):
+	case 0:
+		echo '$x is equal to 0';
+		echo '<br/>';
+		break;
+	case 1:
+		echo '$x is equal to 1';
+		echo '<br/>';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+		break;
+	case 3:
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4:
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5:
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+	default:
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+endswitch;
+// $x is bigger than 5
+switch ($x):
+	case 0:
+		echo '$x is equal to 0';
+		echo '<br/>';
+		break;
+	case 1:
+		echo '$x is equal to 1';
+		echo '<br/>';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+		break;
+	case 3:
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4:
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5:
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+	default:
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+endswitch;
+// $x is bigger than 5
+switch ($x) {
+	case 0;
+		echo '$x is equal to 0';
+		echo '<br/>';
+		break;
+	case 1;
+		echo '$x is equal to 1';
+		echo '<br/>';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+		break;
+	case 3;
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4;
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5;
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+	default;
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+}
+// $x is bigger than 5
+$x = 1;
+switch ($x) {
+	case 0;
+		echo '$x is equal to 0';
+		echo '<br/>';
+	case 1;
+		echo '$x is equal to 1';
+		echo '<br/>';
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+	case 3;
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4;
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5;
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+	default;
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+}
+// $x is equal to 1
+// $x is equal to 2
+// $x is equal to 3
+switch ($x) {
+	default;
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+	case 0;
+		echo '$x is equal to 0';
+		echo '<br/>';
+	case 1;
+		echo '$x is equal to 1';
+		echo '<br/>';
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+	case 3;
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4;
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5;
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+}
+/*
+$x is equal to 1
+$x is equal to 2
+$x is equal to 3
+*/
+$x = 8;
+switch ($x) {
+	default;
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+	case 0;
+		echo '$x is equal to 0';
+		echo '<br/>';
+	case 1;
+		echo '$x is equal to 1';
+		echo '<br/>';
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+	case 3;
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4;
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5;
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+}
+// $x is bigger than 5
+$x = 3;
+switch ($x) {
+	default;
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+	case 0;
+		echo '$x is equal to 0';
+		echo '<br/>';
+	case 1;
+		echo '$x is equal to 1';
+		echo '<br/>';
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+	case 3;
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+	case 4;
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 5;
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+}
+// $x is equal to 3
+switch ($x) {
+	default;
+		echo '$x is bigger than 5';
+		echo '<br/>';
+		break;
+	case 5;
+		echo '$x is equal to 5';
+		echo '<br/>';
+		break;
+	case 0;
+		echo '$x is equal to 0';
+		echo '<br/>';
+	case 1;
+		echo '$x is equal to 1';
+		echo '<br/>';
+	case 4;
+		echo '$x is equal to 4';
+		echo '<br/>';
+		break;
+	case 2:
+		echo '$x is equal to 2';
+		echo '<br/>';
+	case 3;
+		echo '$x is equal to 3';
+		echo '<br/>';
+		break;
+}
+// $x is equal to 3
+$name = 'stone';
+switch($name){
+	case 'andy':
+		echo 'my name is andy';
+		break;
+	case 'jack':
+		echo 'my name is jack';
+		break;
+	case 'stone':
+		echo 'my name is stone';
+		break;
+	case 'lucy':
+		echo 'my name is lucy';
+		break;
+	default:
+		echo 'I have no name';
+		break;
+}
+// my name is stone
+echo '<br/>';
+$name = 'Stone';
+switch($name){
+	case 'andy':
+		echo 'my name is andy';
+		break;
+	case 'jack':
+		echo 'my name is jack';
+		break;
+	case 'STONE':
+	case 'Stone':
+	case 'stone':
+		echo 'my name is stone';
+		break;
+	case 'lucy':
+		echo 'my name is lucy';
+		break;
+	default:
+		echo 'I have no name';
+		break;
+}
+// my name is stone
+echo '<br/>';
+```
