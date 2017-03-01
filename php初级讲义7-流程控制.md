@@ -648,3 +648,42 @@ switch($name){
 // my name is stone
 echo '<br/>';
 ```
+#### 循环控制结构
+在`php`中，常用的循环控制结构包括`while`, `do-while`, `for`以及`foreach`。
+```php
+$i = 0;
+while ($i <= 9) {
+    echo $i;
+    $i++;
+}
+// 0123456789
+echo '<br/>';
+// 当while表达式的值为TRUE时执行循环体中的内容，while表达式的值在开始循环时检查，所以while循环有可能一次都不执行
+$i = 0;
+while($i <= 9){
+    echo $i;
+    $i++;
+}
+// 0123456789
+echo '<br/>';
+$i = 0;
+while ($i <= 9):
+    echo $i;
+    $i++;
+endwhile;
+// 0123456789
+echo '<br/>';
+$i = 0;
+while($i <= 9):
+    echo $i;
+    $i++;
+endwhile;
+// 0123456789
+echo '<br/>';
+$i = 0;
+while ($i <= 9)
+    $i++;
+echo $i;
+// 10
+echo '<br/>';
+```
