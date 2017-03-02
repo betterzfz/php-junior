@@ -776,4 +776,37 @@ for ($i = 0;$i < 10;$i++):
 endfor;
 // 0123456789
 echo '<br/>';
+
+
+// foreach提供一种用于遍历数据或对象的方式
+$four_kings = ['刘德华', '张学友', '黎明', '郭富城'];
+foreach ($four_kings as $value) {
+	echo $value;
+	echo '<br/>';
+}
+/*
+刘德华
+张学友
+黎明
+郭富城
+ */
+
+foreach ($four_kings as $value)
+	echo $value;
+	echo '<br/>';
+// 刘德华张学友黎明郭富城
+
+foreach ($four_kings as $key => $value) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+key:3 => value:郭富城
+ */
+
+// foreach开始执行时，数组内部的指针会自动指向第一个单元，不需要像其它循环遍历那样在循环前调用reset()
+// reset()是一个函数，用于将数组内部指针指向第一个单元
 ```
