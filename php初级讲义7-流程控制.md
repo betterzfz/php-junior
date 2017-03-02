@@ -686,4 +686,94 @@ while ($i <= 9)
 echo $i;
 // 10
 echo '<br/>';
+$i = 0;
+do {
+	echo $i;
+	$i++;
+} while ($i < 10);
+// 0123456789
+echo '<br/>';
+// do-while循环每次在结束时检查循环表达式，所以此种循环至少会执行一次
+
+$i = 0;
+do
+	$i++;
+while ($i < 10);
+echo $i; // 10
+echo '<br/>';
+
+$i = 0;
+do{
+	echo $i;
+	$i++;
+}while($i < 10);
+// 0123456789
+echo '<br/>';
+
+$i = 0;
+do {
+	if ($i > 9) {
+		break;
+	}
+	echo $i++;
+} while (TRUE);
+// 0123456789
+// 可以不控制循环表达式，在循环体内通过break跳出循环
+echo '<br/>';
+
+
+for ($i = 0;$i < 10;$i++) {
+	echo $i;
+}
+// 0123456789
+// for循环的结构为：for (expr1; expr2; expr3) statement, 其中每个表达式都可以为空或是用逗号分隔的多个表达式。expr1和expr2在循环开始前一定会执行一次。expr2如果为真则执行循环体，否则终止循环，当有多个表达式用逗号分隔时以最后一个表达的值为准。expr3在每次循环后执行。
+echo '<br/>';
+
+for ($i = 0;$i < 10;$i++)
+	echo $i;
+// 0123456789
+// 当循环体只有一条语句时可以省略花括号，但是这个做是不推荐的，始终带有花括号的循环结构看起来更清晰
+echo '<br/>';
+
+for ($i = 0;;$i++) {
+	if ($i > 9) {
+		break;
+	}
+	echo $i;
+}
+// 0123456789
+echo '<br/>';
+
+$i = 0;
+for (;;) {
+	if ($i > 9) {
+		break;
+	}
+	echo $i++;
+}
+// 0123456789
+echo '<br/>';
+
+// for ($i = 0, $j = 0;$j = $i, $i < 10;$j++, echo $j, echo '<br/>', echo $i, $i++); // Parse error: syntax error, unexpected 'echo' (T_ECHO)
+for ($i = 0, $j = 0;$j = $i, $i < 10;$j++, print $j, print '<br/>', print $i, $i++); 
+/*
+1
+02
+13
+24
+35
+46
+57
+68
+79
+810
+9
+ */
+echo '<br/>';
+
+for ($i = 0;$i < 10;$i++):
+	echo $i;
+endfor;
+// 0123456789
+echo '<br/>';
 ```
