@@ -809,4 +809,136 @@ key:3 => value:郭富城
 
 // foreach开始执行时，数组内部的指针会自动指向第一个单元，不需要像其它循环遍历那样在循环前调用reset()
 // reset()是一个函数，用于将数组内部指针指向第一个单元
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+ */
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+// key:3 => value:郭富城
+// each()函数用于返回数组中当前的键值对并将数组指针向前移一步
+// list()函数用于把数组中的值赋值给一些变量
+foreach ($four_kings as $key => $value) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+ */
+echo '<hr/>';
+foreach ($four_kings as $key => $value) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+key:3 => value:郭富城
+ */
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+// 此处输出为空，如果不在意$key则while中的表达式可以写成list(, $value) = each($four_kings)
+reset($four_kings);
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+ */
+reset($four_kings);
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+key:3 => value:郭富城
+ */
+echo '<hr/>';
+$arr = [
+	'zero' => [0, 1, 2 ,3],
+	'two' => [4, 5, 6 ,7],
+	'three' => [8, 9],
+];
+foreach ($arr as $key => $value) {
+	echo 'key:'.$key.'<br/>';
+	foreach ($value as $k => $v) {
+		echo 'k='.$k.' => v='.$v;
+		echo '<br/>';
+	}
+}
+/*
+key:zero
+k=0 => v=0
+k=1 => v=1
+k=2 => v=2
+k=3 => v=3
+key:two
+k=0 => v=4
+k=1 => v=5
+k=2 => v=6
+k=3 => v=7
+key:three
+k=0 => v=8
+k=1 => v=9
+ */
+$arr = [
+	'zero' => [0, 1, 2],
+	'two' => [3, 4, 5],
+	'three' => [6, 7, 8],
+];
+foreach ($arr as list($i, $j, $k)) {
+	echo '$i:'.$i.', $j:'.$j.', $k:'.$k;
+	echo '<br/>';
+}
+/*
+$i:0, $j:1, $k:2
+$i:3, $j:4, $k:5
+$i:6, $j:7, $k:8
+ */
+foreach ($arr as list(, $j, $k, $m)) {
+	echo '$j:'.$j.', $k:'.$k.', $m:'.$m;
+	echo '<br/>';
+}
+/*
+Notice: Undefined offset: 3 
+$j:1, $k:2, $m:
+
+Notice: Undefined offset: 3 
+$j:4, $k:5, $m:
+
+Notice: Undefined offset: 3 
+$j:7, $k:8, $m:
+ */
 ```
+# 流程跳转结构
+
