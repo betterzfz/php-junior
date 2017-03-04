@@ -165,7 +165,7 @@ else:
 echo '<br/>';*/
 if ($x > $y):
     echo '$x is bigger than $y';
-elseif ($x == $y): // 网页无法正常运作
+elseif ($x == $y):
     echo '$x is equal to $y';
 else:
     echo '$x is smaller than $y';
@@ -204,7 +204,7 @@ if ($x < $y):
     echo '$x is smaller than $y';
 elseif ($x == $y):
     echo '$x is equal to $y';
-    // echo '$x = $y'; // 网页无法正常运作
+    // echo '$x = $y';
 else:
     echo '$x is bigger than $y';
     echo '<br/>';
@@ -686,4 +686,437 @@ while ($i <= 9)
 echo $i;
 // 10
 echo '<br/>';
+$i = 0;
+do {
+	echo $i;
+	$i++;
+} while ($i < 10);
+// 0123456789
+echo '<br/>';
+// do-while循环每次在结束时检查循环表达式，所以此种循环至少会执行一次
+
+$i = 0;
+do
+	$i++;
+while ($i < 10);
+echo $i; // 10
+echo '<br/>';
+
+$i = 0;
+do{
+	echo $i;
+	$i++;
+}while($i < 10);
+// 0123456789
+echo '<br/>';
+
+$i = 0;
+do {
+	if ($i > 9) {
+		break;
+	}
+	echo $i++;
+} while (TRUE);
+// 0123456789
+// 可以不控制循环表达式，在循环体内通过break跳出循环
+echo '<br/>';
+
+
+for ($i = 0;$i < 10;$i++) {
+	echo $i;
+}
+// 0123456789
+// for循环的结构为：for (expr1; expr2; expr3) statement, 其中每个表达式都可以为空或是用逗号分隔的多个表达式。expr1和expr2在循环开始前一定会执行一次。expr2如果为真则执行循环体，否则终止循环，当有多个表达式用逗号分隔时以最后一个表达的值为准。expr3在每次循环后执行。
+echo '<br/>';
+
+for ($i = 0;$i < 10;$i++)
+	echo $i;
+// 0123456789
+// 当循环体只有一条语句时可以省略花括号，但是这个做是不推荐的，始终带有花括号的循环结构看起来更清晰
+echo '<br/>';
+
+for ($i = 0;;$i++) {
+	if ($i > 9) {
+		break;
+	}
+	echo $i;
+}
+// 0123456789
+echo '<br/>';
+
+$i = 0;
+for (;;) {
+	if ($i > 9) {
+		break;
+	}
+	echo $i++;
+}
+// 0123456789
+echo '<br/>';
+
+// for ($i = 0, $j = 0;$j = $i, $i < 10;$j++, echo $j, echo '<br/>', echo $i, $i++); // Parse error: syntax error, unexpected 'echo' (T_ECHO)
+for ($i = 0, $j = 0;$j = $i, $i < 10;$j++, print $j, print '<br/>', print $i, $i++); 
+/*
+1
+02
+13
+24
+35
+46
+57
+68
+79
+810
+9
+ */
+echo '<br/>';
+
+for ($i = 0;$i < 10;$i++):
+	echo $i;
+endfor;
+// 0123456789
+echo '<br/>';
+
+
+// foreach提供一种用于遍历数据或对象的方式
+$four_kings = ['刘德华', '张学友', '黎明', '郭富城'];
+foreach ($four_kings as $value) {
+	echo $value;
+	echo '<br/>';
+}
+/*
+刘德华
+张学友
+黎明
+郭富城
+ */
+
+foreach ($four_kings as $value)
+	echo $value;
+	echo '<br/>';
+// 刘德华张学友黎明郭富城
+
+foreach ($four_kings as $key => $value) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+key:3 => value:郭富城
+ */
+
+// foreach开始执行时，数组内部的指针会自动指向第一个单元，不需要像其它循环遍历那样在循环前调用reset()
+// reset()是一个函数，用于将数组内部指针指向第一个单元
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+ */
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+// key:3 => value:郭富城
+// each()函数用于返回数组中当前的键值对并将数组指针向前移一步
+// list()函数用于把数组中的值赋值给一些变量
+foreach ($four_kings as $key => $value) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+ */
+echo '<hr/>';
+foreach ($four_kings as $key => $value) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+key:3 => value:郭富城
+ */
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+// 此处输出为空，如果不在意$key则while中的表达式可以写成list(, $value) = each($four_kings)
+reset($four_kings);
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+	if ($key > 1) {
+		break;
+	}
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+ */
+reset($four_kings);
+while (list($key, $value) = each($four_kings)) {
+	echo 'key:'.$key.' => value:'.$value;
+	echo '<br/>';
+}
+/*
+key:0 => value:刘德华
+key:1 => value:张学友
+key:2 => value:黎明
+key:3 => value:郭富城
+ */
+echo '<hr/>';
+$arr = [
+	'zero' => [0, 1, 2 ,3],
+	'two' => [4, 5, 6 ,7],
+	'three' => [8, 9],
+];
+foreach ($arr as $key => $value) {
+	echo 'key:'.$key.'<br/>';
+	foreach ($value as $k => $v) {
+		echo 'k='.$k.' => v='.$v;
+		echo '<br/>';
+	}
+}
+/*
+key:zero
+k=0 => v=0
+k=1 => v=1
+k=2 => v=2
+k=3 => v=3
+key:two
+k=0 => v=4
+k=1 => v=5
+k=2 => v=6
+k=3 => v=7
+key:three
+k=0 => v=8
+k=1 => v=9
+ */
+$arr = [
+	'zero' => [0, 1, 2],
+	'two' => [3, 4, 5],
+	'three' => [6, 7, 8],
+];
+foreach ($arr as list($i, $j, $k)) {
+	echo '$i:'.$i.', $j:'.$j.', $k:'.$k;
+	echo '<br/>';
+}
+/*
+$i:0, $j:1, $k:2
+$i:3, $j:4, $k:5
+$i:6, $j:7, $k:8
+ */
+foreach ($arr as list(, $j, $k, $m)) {
+	echo '$j:'.$j.', $k:'.$k.', $m:'.$m;
+	echo '<br/>';
+}
+/*
+Notice: Undefined offset: 3 
+$j:1, $k:2, $m:
+
+Notice: Undefined offset: 3 
+$j:4, $k:5, $m:
+
+Notice: Undefined offset: 3 
+$j:7, $k:8, $m:
+ */
 ```
+#### 流程跳转结构
+流程跳转结构包括`break`, `continue`, `goto`，`break`表示跳出循环，`continue`表示继续循环，`goto`表示跳转到指定的位置。
+```php
+$arr = [1, 2, 3, 4];
+foreach ($arr as $key => $value) {
+	if ($key == 2) {
+		break;
+	}
+	echo $value;
+}
+// 12
+echo '<br/>';
+foreach ($arr as $key => $value) {
+	if ($key == 2) {
+		continue;
+	}
+	echo $value;
+}
+// 124
+echo '<br/>';
+$arr = [
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+];
+foreach ($arr as $key => $value) {
+	foreach ($value as $k => $v) {
+		if ($k == 1) {
+			break;
+		}
+		if ($key == 2) {
+			break 2;
+		}
+		echo $v;
+	}
+	echo '<br/>';
+}
+/*
+0
+3
+*/
+echo '<br/>';
+foreach ($arr as $key => $value) {
+	foreach ($value as $k => $v) {
+		if ($k == 1) {
+			continue;
+		}
+		if ($key == 1) {
+			continue 2;
+		}
+		echo $v;
+	}
+	echo '<br/>';
+}
+/*
+02
+68
+*/
+echo '<br/>';
+
+goto another;
+echo 'this is a echo';
+echo '<br/>';
+another:
+echo 'this is another echo';
+// this is another echo
+echo '<br/>';
+foreach ($arr as $key => $value) {
+	foreach ($value as $k => $v) {
+		if ($k == 1) {
+			continue;
+		}
+		if ($key == 1) {
+			goto after_arr;
+		}
+		echo $v;
+	}
+	echo '<br/>';
+}
+after_arr:
+echo 'this is echo after arr';
+/*
+02
+this is echo after arr
+*/
+
+goto loop; // Fatal error: 'goto' into loop or switch statement is disallowed
+echo 'there is a loop below';
+foreach ($arr as $key => $value) {
+	foreach ($value as $k => $v) {
+		echo $v;
+	}
+	loop:
+	echo '<br/>';
+}
+echo 'there is a loop uppon';
+```
+#### 文件包含结构
+常用的文件包含结构包括`include`, `require`, `include_once`, `require_once`。
+```php
+// test.php
+$x = 5;
+```
+```php
+var_dump($x); // NULL
+echo '<br/>';
+include 'test.php';
+echo $x; // 5
+echo '<br/>';
+ini_set('display_errors', 'on');
+error_reporting(E_ALL);
+include 'stone.php';
+// Warning: include(stone.php): failed to open stream: No such file or directory
+// Warning: include(): Failed opening 'stone.php' for inclusion (include_path='.:')
+```
+```php
+// test.php
+ini_set('display_errors', 'on');
+$x = 5;
+echo $y;
+echo '<br/>';
+echo $z;
+```
+```php
+$y = 6;
+include 'test.php';
+echo $x;
+$z = 7;
+/*
+6
+
+Notice: Undefined variable: z 
+5
+*/
+```
+```php
+// test.php
+$x = 5;
+```
+```php
+$y = include 'test.php';
+echo $x; // 5
+echo '<br/>';
+var_dump($y);
+echo '<br/>';
+ini_set('display_errors', 'on');
+$z = include 'stone.php';
+var_dump($z);
+echo '<br/>';
+/*
+5
+int(1) 
+
+Warning: include(stone.php): failed to open stream: No such file or directory 
+
+Warning: include(): Failed opening 'stone.php' for inclusion (include_path='.:') 
+bool(false) 
+*/
+```
+```php
+$y = require 'test.php';
+echo $x; // 5
+echo '<br/>';
+var_dump($y);
+echo '<br/>';
+ini_set('display_errors', 'on');
+$z = require 'stone.php';
+var_dump($z);
+echo '<br/>';
+/*
+5
+int(1) 
+
+Warning: require(stone.php): failed to open stream: No such file or directory 
+
+Fatal error: require(): Failed opening required 'stone.php' (include_path='.:') 
+*/
+// require除了在错误处理上不同之外，和include是一样的。当被包含的文件不存在时，include会报一个警告错误，脚本会继续运行，而require会报致命错误（有的版本可能是编译错误）同时终止脚本的运行。
+```
+`include_once`和`include`的使用是一致的，唯一的区别是`include_once`会判断文件是否已经被包含，如果已经被包含，则不会再次包含。`require_once`和`require`的使用是一致的，唯一的区别是require_once会判断文件是否已经被包含，如果已经被包含，则不会再次包含。
