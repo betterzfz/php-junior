@@ -100,6 +100,28 @@ echo_x_10(1);
 #### 函数参数
 通过参数可以向函数传递信息，函数的参数可以是用逗号分隔的表达式列表。
 ```php
+function have_no_paramater(){
+    return 'This is a function without paramater';
+}
+echo have_no_paramater(); // This is a function without paramater
+echo '<br/>';
+
+function have_a_paramater($paramater){
+    return 'This is a function has a paramater:'.$paramater;
+}
+echo have_a_paramater('paramater'); // This is a function has a paramater:paramater
+echo '<br/>';
+
+function person_introduction($name, $age){
+    return 'my name is '.$name.', I am '.$age.' years old.';
+}
+echo person_introduction('lilei', '12'); // my name is lilei, I am 12 years old.
+echo '<br/>';
+function person_introduction_from_array($introduction){
+    return 'my name is '.$introduction['name'].', I am '.$introduction['age'].' years old.';
+}
+echo person_introduction_from_array(['name' => 'lilei', 'age' => '12']); // my name is lilei, I am 12 years old.
+echo '<br/>';
 ```
 - 函数可以没有参数。
 - 函数参数可以是任意合法的数据类型。
