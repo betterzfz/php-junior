@@ -97,6 +97,7 @@ echo_x_10(1);
 - 在`php`函数不能重复定义。
 - 函数名对大小写不敏感，但是应该保持调用和定义的统一。
 - 函数内部可以继续调用自身，这种行为被称为递归。
+
 #### 函数参数
 通过参数可以向函数传递信息，函数的参数可以是用逗号分隔的表达式列表。
 ```php
@@ -122,9 +123,30 @@ function person_introduction_from_array($introduction){
 }
 echo person_introduction_from_array(['name' => 'lilei', 'age' => '12']); // my name is lilei, I am 12 years old.
 echo '<br/>';
+
+$y = 3;
+function add_1($x){
+	$x++;
+	return $x;
+}
+echo add_1($y); // 4
+echo '<br/>';
+echo $y;
+echo '<br/>'; // 3
+function add_2(&$x){
+	$x += 2;
+	return $x;
+}
+echo add_2($y); // 5
+echo '<br/>';
+echo $y;
+echo '<br/>'; // 5
 ```
 - 函数可以没有参数。
 - 函数参数可以是任意合法的数据类型。
 - 默认情况下，函数参数通过值传递，在函数内部改变参数的值并不会改变函数外部的值。
 - 通过引用传递参数来允许函数修改它的参数值。
 - 如果想要函数的一个参数总是通过引用传递，可以在函数定义中该参数的前面加上符号`&`。
+
+#### 默认参数
+通过使用默认参数可以在函数调用不使用
