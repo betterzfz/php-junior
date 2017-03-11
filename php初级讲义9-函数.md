@@ -141,12 +141,100 @@ echo add_2($y); // 5
 echo '<br/>';
 echo $y;
 echo '<br/>'; // 5
+
+function without_default_paramater($x){
+	echo '$x='.$x;
+	echo '<br/>';
+}
+without_default_paramater(); 
+// Warning: Missing argument 1 for without_default_paramater(), called in ... and defined in ...
+// Notice: Undefined variable: x in ...
+// $x=
+
+function with_default_paramater($x=5){
+	echo '$x='.$x;
+	echo '<br/>';
+}
+with_default_paramater(); // $x=5
+with_default_paramater(7); // $x=7
+$y = 4;
+with_default_paramater($y); // $x=4
+
+/*function with_default_paramater($x=$y){ // Parse error: syntax error, unexpected '$y' (T_VARIABLE) in
+	echo '$x='.$x;
+	echo '<br/>';
+}*/
+
+
+function without_default_paramater_return_value($x){
+	return $x;
+}
+echo without_default_paramater_return_value(5); // 5
+echo '<br/>';
+/*function with_default_paramater($x=without_default_paramater_return_value(5)){ // Parse error: syntax error, unexpected '(', expecting ')' in
+	echo '$x='.$x;
+	echo '<br/>';
+}*/
+const NUMBER_PARAMATER = 8;
+function with_default_paramater_const($x=NUMBER_PARAMATER){ // Parse error: syntax error, unexpected '(', expecting ')' in
+	echo '$x='.$x;
+	echo '<br/>';
+}
+with_default_paramater_const(); // $x=8
+
+function with_two_paramater($x, $y = 4){
+	echo '$x='.$x;
+	echo '<br/>';
+	echo '$y='.$y;
+	echo '<br/>';
+}
+with_two_paramater(1);
+with_two_paramater(3, 5);
+/*
+$x=1
+$y=4
+$x=3
+$y=5
+*/
+function with_two_paramater_false($x = 5, $y){
+	echo '$x='.$x;
+	echo '<br/>';
+	echo '$y='.$y;
+	echo '<br/>';
+}
+with_two_paramater_false(1);
+with_two_paramater_false(3, 5);
+/*
+Warning: Missing argument 2 for with_two_paramater_false(), called in 
+$x=1
+
+Notice: Undefined variable: y in 
+$y=
+$x=3
+$y=5
+*/
+function with_reference_paramater(&$x = 5){
+	$x++;
+	echo '$x='.$x;
+	echo '<br/>';
+}
+echo '$x='.$x;
+echo '<br/>';
+with_reference_paramater($x);
+echo '<br/>';
+echo '$x='.$x;
+echo '<br/>';
+/*
+Notice: Undefined variable: x in D:\stone\wamp\Apache24\htdocs\test.php on line 79
+$x=
+$x=1
+
+$x=1
+*/
 ```
 - 函数可以没有参数。
 - 函数参数可以是任意合法的数据类型。
 - 默认情况下，函数参数通过值传递，在函数内部改变参数的值并不会改变函数外部的值。
 - 通过引用传递参数来允许函数修改它的参数值。
 - 如果想要函数的一个参数总是通过引用传递，可以在函数定义中该参数的前面加上符号`&`。
-
-#### 默认参数
-通过使用默认参数可以在函数调用不使用
+- 通过使用默认参数可以在函数调用时不传递参数，默认参数应该放在所有非默认参数后面，默认参数不能为变量和函数调用，默认参数也可以通过引用传递。
