@@ -109,43 +109,43 @@ insert into test_users(username, password, realname, sex, age, introduce, modifi
 alter table test_users add column test_small smallint not null default 0 comment '小整型字段';
 alter table test_users drop column teat_small;
 ```
-![drop_column.png](//upload-images.jianshu.io/upload_images/2050891-3bbb30009c063303.png)
+![](//upload-images.jianshu.io/upload_images/2050891-3bbb30009c063303.png)
 
 - 修改字段类型:`alter table tablename modify column_name type ...`
 ```
 alter table test_users modify modified_by int(11) unsigned not null default 0 comment '记录修改者';
 ```
 
-![alter_table_modify_column.png](//upload-images.jianshu.io/upload_images/2050891-386c0db900eba400.png)
+![](//upload-images.jianshu.io/upload_images/2050891-386c0db900eba400.png)
 
 - 删除数据表记录:`delete from tablename where column_name1 = column_value1 AND column_name2 = column_value2 ...`
 ```
 delete from test_users where id = 1 and username = 'stone';
 ```
 
-![delete_where_and.png](//upload-images.jianshu.io/upload_images/2050891-c0b58ee0b8230485.png)
+![](//upload-images.jianshu.io/upload_images/2050891-c0b58ee0b8230485.png)
 
 ```
 delete from test_users;
 ```
 
-![delete_from.png](//upload-images.jianshu.io/upload_images/2050891-e1a78682ef752048.png)
+![](//upload-images.jianshu.io/upload_images/2050891-e1a78682ef752048.png)
 
-![insert_after_delete.png](//upload-images.jianshu.io/upload_images/2050891-b1c6e7f7cf00c05b.png)
+![](//upload-images.jianshu.io/upload_images/2050891-b1c6e7f7cf00c05b.png)
 
 - 清空表:`truncate tablename`
 ```
 truncate test_users;
 ```
 
-![truncate_table.png](//upload-images.jianshu.io/upload_images/2050891-29867984d3a8fa5b.png)
+![](//upload-images.jianshu.io/upload_images/2050891-29867984d3a8fa5b.png)
 
 - 更改字段:`alter table table_name change column_name new_column_name type ...`
 ```
 alter table test_users change created_by created_by_id int(11) unsigned zerofill not null default 0 comment '记录创建者';
 ```
 
-![change_column.png](//upload-images.jianshu.io/upload_images/2050891-9baf9e0dca7b3d0d.png)
+![](//upload-images.jianshu.io/upload_images/2050891-9baf9e0dca7b3d0d.png)
 
 #### 字段类型
 ###### 数字类型
@@ -211,17 +211,74 @@ bool_test BOOL NOT NULL DEFAULT 0 COMMENT '布尔型字段'
 )ENGINE=InnoDB DEFAULT CHARACTER SET=utf8 COMMENT '布尔型数据类型测试表';
 ```
 
-![bool.png](//upload-images.jianshu.io/upload_images/2050891-2e6ab70c4f3040e2.png)
+![](//upload-images.jianshu.io/upload_images/2050891-2e6ab70c4f3040e2.png)
+
+![bool_if.png](http://upload-images.jianshu.io/upload_images/2050891-f2f4e84937af41cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - SMALLINT[(M)] [UNSIGNED] [ZEROFILL]:占用2个字节的整型数据，有符号的数据范围是-32768到32767，无符号的数据范围是0到65535。通过`M`来指定数字位数，通过`UNSIGNED`来指定是否有符号，通过`ZEROFILL`来指定是否进行零填充。
 ```
 alter table test_int add column test_small smallint not null default 0 comment '小整型字段';
 ```
 
-![smallint.png](//upload-images.jianshu.io/upload_images/2050891-9f2734de41df283f.png)
-
+![](//upload-images.jianshu.io/upload_images/2050891-9f2734de41df283f.png)
 
 ![alter_test_int.png](http://upload-images.jianshu.io/upload_images/2050891-c1f4d6e87f22c49a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-
 ![modify_tiny_test.png](http://upload-images.jianshu.io/upload_images/2050891-3aa62b31796cbd85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL]:占用3个字节的整型数据，有符号的数据范围是-8388608到8388607，无符号的数据范围是0到16777215。通过`M`来指定数字位数，通过`UNSIGNED`来指定是否有符号，通过`ZEROFILL`来指定是否进行零填充。
+- INT(INTEGER)[(M)] [UNSIGNED] [ZEROFILL]:占用4个字节的整型数据，有符号的数据范围是-2147483648到2147483647，无符号的数据范围是0到4294967296。通过`M`来指定数字位数，通过`UNSIGNED`来指定是否有符号，通过`ZEROFILL`来指定是否进行零填充。
+- BIGINT[(M)] [UNSIGNED] [ZEROFILL]:占用8个字节的整型数据，有符号的数据范围是-9223372036854775808到9223372036854775807，无符号的数据范围是0到18446744073709551615。通过`M`来指定数字位数，通过`UNSIGNED`来指定是否有符号，通过`ZEROFILL`来指定是否进行零填充。如果一个字段被设置成`BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE`，则该字段被认为是`SERIAL`的。
+
+![serial.png](http://upload-images.jianshu.io/upload_images/2050891-4115200f400bd033.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![bigint.png](http://upload-images.jianshu.io/upload_images/2050891-a9e718b801ca5b51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![bigint2.png](http://upload-images.jianshu.io/upload_images/2050891-55505d11649624ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![drop_column_2.png](http://upload-images.jianshu.io/upload_images/2050891-0cfee9d47c728a66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+```
+create table if not exists test_int(
+bigint_test bigint unsigned not null default 0 comment 'bigint test'
+)engine=myisam default character set=utf8 comment '整型测试';
+```
+
+![create_bigint_table.png](http://upload-images.jianshu.io/upload_images/2050891-9de05c51436581c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![auto_increment_field.png](http://upload-images.jianshu.io/upload_images/2050891-766b3950246d14da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![bigint_insert_test.png](http://upload-images.jianshu.io/upload_images/2050891-6281022e36ac4227.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![min_max.png](http://upload-images.jianshu.io/upload_images/2050891-e565c61072c21574.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- DECIMAL[(M[,D])] [UNSIGNED] [ZEROFILL]:总数为`M`，小数位数为`D`的小数，负数的`-`及小数点不算在`M`中，`M`的最大数为65，`D`的最大数为30，`D`的默认值为0，`M`的默认值为10。通过`UNSIGNED`来指定是否有符号，通过`ZEROFILL`来指定是否进行零填充。
+```
+create table if not exists test_float(
+decimal_test decimal(5, 2) not null default 0 comment 'decimal test'
+)engine=myisam default character set=utf8 comment '浮点数测试表'; 
+```
+
+![create_decimal.png](http://upload-images.jianshu.io/upload_images/2050891-cf8a6b1ff6d71cc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![insert_decimal.png](http://upload-images.jianshu.io/upload_images/2050891-c15ef497f5448270.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![select_decimal.png](http://upload-images.jianshu.io/upload_images/2050891-6934744d3589a491.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![unsigned_decimal.png](http://upload-images.jianshu.io/upload_images/2050891-2a8877c8b9bcccfc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![insert_unsigned_decimal.png](http://upload-images.jianshu.io/upload_images/2050891-25628c4ad40d3818.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![zerofill_decimal.png](http://upload-images.jianshu.io/upload_images/2050891-11b1445e1ca18136.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+- DEC[(M[,D])] [UNSIGNED] [ZEROFILL], NUMERIC[(M[,D])] [UNSIGNED] [ZEROFILL], FIXED[(M[,D])] [UNSIGNED] [ZEROFILL]都和DECIMAL和一样的，FIXED适合与其它数据库管理系统进行交互。
+- FLOAT[(M, D)] [UNSIGNED] [ZEROFILL]:单精度浮点数，取值范围是-1.7976931348623157E+308到-2.2250738585072014E-308, 0, 以及2.2250738585072014E-308到1.7976931348623157E+308，这是基于IEEE标准的理论值，实际值可能略小于这个范围，主要取决于硬件配置和操作系统。`M`是数字的总位数，`D`是小数位数，如果`M`和`D`被省略了，数值将会根据硬件的限制来存储。单精度浮点数大概可以精确到小数点后面6位。指定了`unsigned`的字段不能保存小数。使用`FLOAT`可能会带来意想不到的问题，因为在`mysql`中数据的计算是按照双精度来进行。
+
+![create_float.png](http://upload-images.jianshu.io/upload_images/2050891-9572270268825ad2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![insert_float.png](http://upload-images.jianshu.io/upload_images/2050891-0bb7d27eef853db1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+![insert_float(5,2).png](http://upload-images.jianshu.io/upload_images/2050891-6f9c5d81137d8580.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![insert_float(5,2)_2.png](http://upload-images.jianshu.io/upload_images/2050891-48af9f228a465b1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- DOUBLE[(M, D)] [UNSIGNED] [ZEROFILL]:单精度浮点数，取值范围是-1.7976931348623157E+308到-2.2250738585072014E-308, 0, 以及2.2250738585072014E-308到1.7976931348623157E+308，这是基于IEEE标准的理论值，实际值可能略小于这个范围，主要取决于硬件配置和操作系统。`M`是数字的总位数，`D`是小数位数，如果`M`和`D`被省略了，数值将会根据硬件的限制来存储。单精度浮点数大概可以精确到小数点后面6位。指定了`unsigned`的字段不能保存小数。使用`FLOAT`可能会带来意想不到的问题，因为在`mysql`中数据的计算是按照双精度来进行。
