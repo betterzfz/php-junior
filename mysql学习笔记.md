@@ -270,7 +270,7 @@ decimal_test decimal(5, 2) not null default 0 comment 'decimal test'
 
 ![zerofill_decimal.png](http://upload-images.jianshu.io/upload_images/2050891-11b1445e1ca18136.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 - DEC[(M[,D])] [UNSIGNED] [ZEROFILL], NUMERIC[(M[,D])] [UNSIGNED] [ZEROFILL], FIXED[(M[,D])] [UNSIGNED] [ZEROFILL]都和DECIMAL和一样的，FIXED适合与其它数据库管理系统进行交互。
-- FLOAT[(M, D)] [UNSIGNED] [ZEROFILL]:单精度浮点数，取值范围是-1.7976931348623157E+308到-2.2250738585072014E-308, 0, 以及2.2250738585072014E-308到1.7976931348623157E+308，这是基于IEEE标准的理论值，实际值可能略小于这个范围，主要取决于硬件配置和操作系统。`M`是数字的总位数，`D`是小数位数，如果`M`和`D`被省略了，数值将会根据硬件的限制来存储。单精度浮点数大概可以精确到小数点后面6位。指定了`unsigned`的字段不能保存小数。使用`FLOAT`可能会带来意想不到的问题，因为在`mysql`中数据的计算是按照双精度来进行。
+- FLOAT[(M, D)] [UNSIGNED] [ZEROFILL]:单精度浮点数，取值范围是-1.7976931348623157E+308到-2.2250738585072014E-308, 0, 以及2.2250738585072014E-308到1.7976931348623157E+308，这是基于IEEE标准的理论值，实际值可能略小于这个范围，主要取决于硬件配置和操作系统。`M`是数字的总位数，`D`是小数位数，如果`M`和`D`被省略了，数值将会根据硬件的限制来存储。单精度浮点数大概可以精确到小数点后面6位。指定了`unsigned`的字段不能保存负数。使用`FLOAT`可能会带来意想不到的问题，因为在`mysql`中数据的计算是按照双精度来进行。
 
 ![create_float.png](http://upload-images.jianshu.io/upload_images/2050891-9572270268825ad2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
@@ -281,12 +281,59 @@ decimal_test decimal(5, 2) not null default 0 comment 'decimal test'
 
 ![insert_float(5,2)_2.png](http://upload-images.jianshu.io/upload_images/2050891-48af9f228a465b1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-- DOUBLE[(M, D)] [UNSIGNED] [ZEROFILL]:单精度浮点数，取值范围是-1.7976931348623157E+308到-2.2250738585072014E-308, 0, 以及2.2250738585072014E-308到1.7976931348623157E+308，这是基于IEEE标准的理论值，实际值可能略小于这个范围，主要取决于硬件配置和操作系统。`M`是数字的总位数，`D`是小数位数，如果`M`和`D`被省略了，数值将会根据硬件的限制来存储。单精度浮点数大概可以精确到小数点后面6位。指定了`unsigned`的字段不能保存小数。使用`FLOAT`可能会带来意想不到的问题，因为在`mysql`中数据的计算是按照双精度来进行。
+- DOUBLE[(M, D)] [UNSIGNED] [ZEROFILL]:双精度浮点数，取值范围是-1.7976931348623157E+308到-2.2250738585072014E-308, 0, 以及2.2250738585072014E-308到1.7976931348623157E+308，这是基于IEEE标准的理论值，实际值可能略小于这个范围，主要取决于硬件配置和操作系统。`M`是数字的总位数，`D`是小数位数，如果`M`和`D`被省略了，数值将会根据硬件的限制来存储。双精度浮点数大概可以精确到小数点后面15位。指定了`unsigned`的字段不能保存负数。
 - DOUBLE PRECISION[(M,D)] [UNSIGNED] [ZEROFILL], REAL[(M,D)] [UNSIGNED] [ZEROFILL]这两种是DOUBLE的同义词，但是如果REAL_AS_FLOAT模式被打开的话，REAL就是和FLOAT是同义的。
 - FLOAT(p) [UNSIGNED] [ZEROFILL]:这是一个浮点数，其中`p`表示在比特位上的精度，但是`mysql`仅仅在决定该使用`FLOAT`还是`DOUBLE`来存放结果值的时候使用这个值，如果`p`的范围是0到24，数据类型将是没有`M`和`D`的`FLOAT`。如果`p`的值从25到53，数据的类型将会是没有指定`M`和`D`的`DOUBLE`。字段的范围和之前描述的单精度浮点类型`FLOAT`和双精度浮点类型`DOUBLE`一致。`FLOAT(p)是为了和`ODBC`交互而提供的。
 - DATE
+在`mysql`中日期格式以`YYYY-MM-DD`形式显示，取值范围为`1000-01-01`到`9999-12-31`，这个类型保存的数据只能是字符串或数字。
+```
+create table if not exists datetime_test(
+test_date date comment 'test date'
+)engine=myisam default character set=utf8 comment '日期时间测试表';
+```
+
+![datetime_test.png](http://upload-images.jianshu.io/upload_images/2050891-bb5bdf55ef4f9d8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![insert_date.png](http://upload-images.jianshu.io/upload_images/2050891-f3f38a8ca4b9c4c2.png)
+
 - DATETIME[(fsp)]
+`fsp`是可选的，用于表示小于秒的时间，取值范围是`0`到`6`，默认值是`0`。`DATETIME`可以用于表示日期时间，支持的范围从`1000-01-01 00:00:00.000000`到`9999-12-31 23:59:59.999999`。在`mysql`中日期的格式为`YYYY-MM-DD HH:MM:SS[.fraction]`，允许存放的值只能是字符串和数字。
+```
+alter table datetime_test change test_date test_datetime datetime comment 'datetime test';
+```
+
+![create_datetime.png](http://upload-images.jianshu.io/upload_images/2050891-7ea9839f7573970c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![insert_datetime.png](http://upload-images.jianshu.io/upload_images/2050891-6e70a4e4ccccb30a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 - TIMESTAMP[(fsp)]
+timestamp表示时间戳，范围从`1970-01-01 00:00:01.000000` UTC to `2038-01-19 03:14:07.999999` UTC，UTC是世界标准时间。timestamp存储的是从`1970-01-01 00:00:00` UTC以来的秒数。`fsp`是可选的，用于表示小于秒的时间，取值范围是`0`到`6`，默认值是`0`。
+```
+alter table datetime_test change test_datetime test_timestamp timestamp comment 'timestamp test';
+```
+
+![test_timestamp.png](http://upload-images.jianshu.io/upload_images/2050891-4b4e0b626091b1c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 - TIME[(fsp)]
 - YEAR[(4)]
+- [NATIONAL] CHAR(M) [CHARACTER SET charset_name] [COLLATE collation_name]
+`M`的范围从`0`到`255`
 - [NATIONAL] VARCHAR(M) [CHARACTER SET charset_name] [COLLATE collation_name]
+`M`的范围从`0`到`65535`
+- ENUM('value1','value2',...) [CHARACTER SET charset_name] [COLLATE collation_name]
+- TINYBLOB
+最大可存储字节数为255
+- TINYTEXT [CHARACTER SET charset_name] [COLLATE collation_name]
+最大可存储字符数为255
+- BLOB[(M)]
+最大可存储字节数为65535
+- TEXT[(M)] [CHARACTER SET charset_name] [COLLATE collation_name]
+最大可存储字符数为65535
+- MEDIUMBLOB
+最大可存储字节数为16777215(2 ** 24 - 1)
+- MEDIUMTEXT [CHARACTER SET charset_name] [COLLATE collation_name]
+最大可存储字符数为16777215(2 ** 24 - 1)
+- LONGBLOB
+最大可存储字节数为4294967295 (2 ** 32 − 1)
+- LONGTEXT [CHARACTER SET charset_name] [COLLATE collation_name]
+最大可存储字符数为4294967295 (2 ** 32 − 1)
