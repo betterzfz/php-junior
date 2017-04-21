@@ -283,7 +283,7 @@ decimal_test decimal(5, 2) not null default 0 comment 'decimal test'
 
 - DOUBLE[(M, D)] [UNSIGNED] [ZEROFILL]:双精度浮点数，取值范围是-1.7976931348623157E+308到-2.2250738585072014E-308, 0, 以及2.2250738585072014E-308到1.7976931348623157E+308，这是基于IEEE标准的理论值，实际值可能略小于这个范围，主要取决于硬件配置和操作系统。`M`是数字的总位数，`D`是小数位数，如果`M`和`D`被省略了，数值将会根据硬件的限制来存储。双精度浮点数大概可以精确到小数点后面15位。指定了`unsigned`的字段不能保存负数。
 - DOUBLE PRECISION[(M,D)] [UNSIGNED] [ZEROFILL], REAL[(M,D)] [UNSIGNED] [ZEROFILL]这两种是DOUBLE的同义词，但是如果REAL_AS_FLOAT模式被打开的话，REAL就是和FLOAT是同义的。
-- FLOAT(p) [UNSIGNED] [ZEROFILL]:这是一个浮点数，其中`p`表示在比特位上的精度，但是`mysql`仅仅在决定该使用`FLOAT`还是`DOUBLE`来存放结果值的时候使用这个值，如果`p`的范围是0到24，数据类型将是没有`M`和`D`的`FLOAT`。如果`p`的值从25到53，数据的类型将会是没有指定`M`和`D`的`DOUBLE`。字段的范围和之前描述的单精度浮点类型`FLOAT`和双精度浮点类型`DOUBLE`一致。`FLOAT(p)是为了和`ODBC`交互而提供的。
+- FLOAT(p) [UNSIGNED] [ZEROFILL]:这是一个浮点数，其中`p`表示在比特位上的精度，但是`mysql`仅仅在决定该使用`FLOAT`还是`DOUBLE`来存放结果值的时候使用这个值，如果`p`的范围是0到24，数据类型将是没有`M`和`D`的`FLOAT`。如果`p`的值从25到53，数据的类型将会是没有指定`M`和`D`的`DOUBLE`。字段的范围和之前描述的单精度浮点类型`FLOAT`和双精度浮点类型`DOUBLE`一致。`FLOAT(p)`是为了和`ODBC`交互而提供的。
 - DATE
 在`mysql`中日期格式以`YYYY-MM-DD`形式显示，取值范围为`1000-01-01`到`9999-12-31`，这个类型保存的数据只能是字符串或数字。
 ```
@@ -324,16 +324,18 @@ alter table datetime_test change test_datetime test_timestamp timestamp comment 
 - TINYBLOB
 最大可存储字节数为255
 - TINYTEXT [CHARACTER SET charset_name] [COLLATE collation_name]
-最大可存储字符数为255
+最大可存储字节数为255
 - BLOB[(M)]
 最大可存储字节数为65535
 - TEXT[(M)] [CHARACTER SET charset_name] [COLLATE collation_name]
-最大可存储字符数为65535
+最大可存储字节数为65535
 - MEDIUMBLOB
 最大可存储字节数为16777215(2 ** 24 - 1)
 - MEDIUMTEXT [CHARACTER SET charset_name] [COLLATE collation_name]
-最大可存储字符数为16777215(2 ** 24 - 1)
+最大可存储字节数为16777215(2 ** 24 - 1)
 - LONGBLOB
 最大可存储字节数为4294967295 (2 ** 32 − 1)
 - LONGTEXT [CHARACTER SET charset_name] [COLLATE collation_name]
-最大可存储字符数为4294967295 (2 ** 32 − 1)
+最大可存储字节数为4294967295 (2 ** 32 − 1)
+
+#### 索引
