@@ -338,4 +338,17 @@ alter table datetime_test change test_datetime test_timestamp timestamp comment 
 - LONGTEXT [CHARACTER SET charset_name] [COLLATE collation_name]
 最大可存储字节数为4294967295 (2 ** 32 − 1)
 
-#### 索引
+#### 事务
+事务表示一组操作要么都成功要么都不成功。
+
+![create_database.jpg](http://upload-images.jianshu.io/upload_images/2050891-094aa672a9e31e00.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![commit.jpg](http://upload-images.jianshu.io/upload_images/2050891-9db78c42d7f8b7f4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![rollback.jpg](http://upload-images.jianshu.io/upload_images/2050891-722bc8d665b70256.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![multi_transaction.jpg](http://upload-images.jianshu.io/upload_images/2050891-828fa4117be718d3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![commit_rollback.jpg](http://upload-images.jianshu.io/upload_images/2050891-4dc48620604cdb32.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+#### 补充
+- 删除多个字段`alter table table_name drop col1, drop col2, drop col3;`
